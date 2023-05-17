@@ -1,5 +1,6 @@
 import PySimpleGUI as sg
 import psycopg2
+import emoji
 
 conn = psycopg2.connect(
     host="localhost",
@@ -732,23 +733,28 @@ def remover_compra():
     pass
 
 def main():
+    sg.theme('LightGrey1')
+
     while True:
         layout = [
             [sg.Text("Bem vindo a Farmácia XYZ")],
-            [sg.Button('Menu Clientes'), sg.Button('Menu Produtos'), sg.Button('Menu Compras'), sg.Button('Sair')],
+            [sg.Button(emoji.emojize(':busts_in_silhouette: Menu Clientes'), size=(20, 2), button_color=('white', '#4e8cff'), key='clientes')], 
+            [sg.Button(emoji.emojize(':package: Menu Produtos'), size=(20, 2), button_color=('white', '#f5a742'), key='produtos')], 
+            [sg.Button(emoji.emojize(':shopping_cart: Menu Compras'), size=(20, 2), button_color=('white', '#3dcf80'), key='compras')],
+            [sg.Button('Sair', size=(10, 2), button_color=('white', '#e74c3c'))],
         ]
         
         window = sg.Window('Farmácia XYZ', layout)
 
         event, values = window.read()
 
-        if event == 'Menu Clientes':
+        if event == 'clientes':
             menu_clientes()
-        elif event == 'Menu Produtos':
+        elif event == 'produtos':
             menu_produtos()
-        elif event == 'Menu Compras':
+        elif event == 'compras':
             menu_compras()
-        elif event == 'Sair':
+        elif event == 'Sair' or event == sg.WINDOW_CLOSED:
             cur.close()
             conn.close()
             break
