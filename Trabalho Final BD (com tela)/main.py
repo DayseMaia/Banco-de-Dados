@@ -19,14 +19,14 @@ def main():
 
     while True:
         layout = [
-            [sg.Text("SG NinhoFarma", font=('Arial', 12, 'bold'))],
-            [sg.Button('📋  Menu Clientes', size=(20, 2), button_color=('white', '#304d63'), key='clientes')], 
-            [sg.Button('🛒  Menu Produtos', size=(20, 2), button_color=('white', '#357599'), key='produtos')], 
-            [sg.Button('💸  Menu Compras', size=(20, 2), button_color=('white', '#4e8cff'), key='compras')],
+            [sg.Text("Sistema de Gerenciamento NinhoFarma", font=('Arial', 14, 'bold'))],
+            [sg.Text('')], 
+            [sg.Button('📋  Menu Clientes', size=(20, 2), button_color=('white', '#304d63'), key='clientes'), sg.Button('🛒  Menu Produtos', size=(20, 2), button_color=('white', '#357599'), key='produtos'), sg.Button('💸  Menu Compras', size=(20, 2), button_color=('white', '#4e8cff'), key='compras')], 
+            [sg.Text('')],
             [sg.Button('Sair', size=(10, 2), button_color=('white', '#e74c3c'))],
         ]
         
-        window = sg.Window('NinhoFarma', layout)
+        window = sg.Window('Farmácia NinhoFarma', layout)
 
         event, _ = window.read()
 
