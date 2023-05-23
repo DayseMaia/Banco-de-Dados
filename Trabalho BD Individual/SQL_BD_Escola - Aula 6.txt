@@ -1,0 +1,43 @@
+-- Criação da tabela "Alunos"
+CREATE TABLE Alunos (
+  Nro_Matricula SERIAL PRIMARY KEY,
+  CPF VARCHAR(11),
+  Nome_Aluno VARCHAR(100),
+  Endereco VARCHAR(200),
+  Telefone VARCHAR(20),
+  Ano_Nascimento INTEGER
+);
+
+-- Criação da tabela "Disciplinas"
+CREATE TABLE Disciplinas (
+  Cod_Disciplina SERIAL PRIMARY KEY,
+  Nome VARCHAR(100),
+  Cod_Curso INTEGER
+);
+
+-- Criação da tabela "Matricula"
+CREATE TABLE Matricula (
+  Nro_Matricula INTEGER REFERENCES Alunos(Nro_Matricula),
+  Cod_Disciplina INTEGER REFERENCES Disciplinas(Cod_Disciplina),
+  Semestre VARCHAR(10),
+  Ano INTEGER,
+  Nota DECIMAL,
+  Nro_Faltas INTEGER,
+  PRIMARY KEY (Nro_Matricula, Cod_Disciplina)
+);
+
+-- Inserção de dados na tabela "Alunos"
+INSERT INTO Alunos (CPF, Nome_Aluno, Endereco, Telefone, Ano_Nascimento)
+VALUES ('12345678901', 'João Silva', 'Rua A, 123', '987654321', 2000),
+       ('98765432109', 'Maria Souza', 'Avenida B, 456', '123456789', 1999);
+
+-- Inserção de dados na tabela "Disciplinas"
+INSERT INTO Disciplinas (Nome, Cod_Curso)
+VALUES ('Matemática', 1),
+       ('História', 2);
+
+-- Inserção de dados na tabela "Matricula"
+INSERT INTO Matricula (Nro_Matricula, Cod_Disciplina, Semestre, Ano, Nota, Nro_Faltas)
+VALUES (1, 1, '1ºSemestre', 2023, 8.5, 2),
+       (1, 2, '2ºSemestre', 2023, 7.0, 1),
+       (2, 1, '1ºSemestre', 2023, 9.0, 0);
